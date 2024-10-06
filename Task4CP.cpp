@@ -1,9 +1,10 @@
 #include <iostream>
 #include <cmath>
 using namespace std;
-void projectTimeCalculation(int neededHours, int daysAvailable, int numberOfWorkers);
+string projectTimeCalculation(int neededHours, int daysAvailable, int numberOfWorkers, string result);
 int main() {
     int neededHours, daysAvailable, numberOfWorkers;
+    string result;
     
     cout<<" Enter the needed hours: ";
     cin >> neededHours;
@@ -12,20 +13,23 @@ int main() {
     cout<<" Enter the number of all workers: ";
     cin >> numberOfWorkers;
     
-    projectTimeCalculation(neededHours, daysAvailable, numberOfWorkers);
+    result = projectTimeCalculation(neededHours, daysAvailable, numberOfWorkers,result);
+    cout << result;
 
 }
 
 
-void projectTimeCalculation(int neededHours, int daysAvailable, int numberOfWorkers) {
+string projectTimeCalculation(int neededHours, int daysAvailable, int numberOfWorkers,string result) {
     float effectiveWorkingDays = daysAvailable * 0.9;
     float totalHoursAvailable = (effectiveWorkingDays * numberOfWorkers * (8 + 2));
     
     if (totalHoursAvailable >= neededHours) {
-        cout << "Yes!" << totalHoursAvailable - neededHours << " hours left." << endl;
+        result = "Yes!" + to_string(int(totalHoursAvailable - neededHours)) + " hours left.";
+	    return result;
     } 
     if(totalHoursAvailable < neededHours) {
-        cout << "Not enough time!" << neededHours - totalHoursAvailable << " hours needed." << endl;
+        result = "Not enough time!" + to_string(int(neededHours - totalHoursAvailable)) + " hours needed.";
+	    return result;
     }
 }
 
